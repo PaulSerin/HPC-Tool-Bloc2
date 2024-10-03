@@ -83,8 +83,8 @@ int main(int argc, char *argv[])
   unsigned int nnz = populate_sparse_matrix(mat, size, density, 1);
   populate_vector(vec, size, 2);
 
-  printf("Matriz size: %d x %d (%ld elements)\n", size, size, size*size);
-  printf("%d non-zero elements (%.2lf\%)\n\n", nnz, (double) nnz / (size*size) * 100.0);
+  printf("Matriz size: %d x %d (%d elements)\n", size, size, size*size);
+  printf("%d non-zero elements (%.2lf%%)\n\n", nnz, (double) nnz / (size*size) * 100.0);
 
   //
   // Dense computation using CBLAS (eg. GSL's CBLAS implementation)
