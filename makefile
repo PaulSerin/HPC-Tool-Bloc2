@@ -1,35 +1,33 @@
-all : spmv
+# Makefile for building spmv
 
+# Compiler and flags
 CC = gcc
+CFLAGS = -Wall -Wextra -Ofast
+LDFLAGS = -lopenblas
 RM = rm -f
+
+# Source files and object files
 SRC = $(wildcard *.c)
-HEAD = $(wildcard *.h)
 OBJ = $(SRC:.c=.o)
-PROG= spmv
+PROG = spmv
 
+# Default target
+all: $(PROG)
 
-spmv : spmv.o my_sparse.o my_dense.o timer.o
-	$(CC) spmv.o my_sparse.o my_dense.o timer.o -lopenblas -o $(PROG)
-	./$(PROG)
-
-spmv.o : spmv.c
-	$(CC) -c spmv.c -o spmv.o
-
-my_sparse.o : my_sparse.c
-	$(CC) -c my_sparse.c -o my_sparse.o
-
-my_dense.o : my_dense.c
-	$(CC) -c my_dense.c -o my_dense.o
-
-timer.o : timer.c
-	$(CC) -c timer.c -o timer.o
-    
-    
-.PHONY : clean save
-
-clean :
+# Linking the final executable
+$(PROG): $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) -o $@
+	./$(PROG)  # Run the program after building
 	$(RM) $(OBJ) $(PROG)
 
-save : 
-	mkdir save/
+# Phony targets
+.PHONY: clean save
+
+# Clean target to remove object files and the program
+clean:
+	$(RM) $(OBJ) $(PROG)
+
+# Save target to back up source files
+save:
+	mkdir -p save/
 	cp -f $(SRC) save/
