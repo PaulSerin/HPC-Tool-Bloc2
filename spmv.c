@@ -132,5 +132,12 @@ int main(int argc, char *argv[])
 
   // Compare times (and computation correctness!)
 
+
+  // Free resources
+  free(mat);
+  free(vec);
+  free(refsol);
+  free(mysol);
+
   return 0;
 }
