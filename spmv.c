@@ -122,5 +122,21 @@ int main(int argc, char *argv[])
 
   // Compare times (and computation correctness!)
 
+    // Convert mat to a sparse format: CSR
+    CSRMatrix *csr = dense_to_csr(size, mat);
+    double *sparse_result = (double *) malloc(size * sizeof(double));
+
+    // Perform sparse matrix-vector product
+    timestamp(&start);
+    my_sparse(csr, vec, sparse_result);
+    timestamp(&now);
+    printf("Time taken by my sparse matrix - vector product: %ld ms\n", diff_milli(&start, &now));
+
+    // Compare results
+    if (check_result(refsol, sparse_result, size) == 1)
+        printf("Sparse result is ok!\n");
+    else
+        printf("Sparse result is wrong!\n");
+
   return 0;
 }
