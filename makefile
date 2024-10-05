@@ -3,7 +3,7 @@
 # Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Ofast
-LDFLAGS = -lopenblas
+LDFLAGS = -lopenblas -lgsl -lgslcblas -lm
 RM = rm -f
 
 # Source files and object files
