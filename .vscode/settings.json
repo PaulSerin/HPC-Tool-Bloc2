@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "spmv.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
