@@ -1,10 +1,5 @@
+#include <stdlib.h>
 #include "spmv.h"
-
-typedef struct {
-    int *row_ptr;     // Pointer to the start of each row
-    int *col_indices; // Column indices of the non-zero values
-    double *values;   // Non-zero values of the matrix
-} CSRMatrix;
 
 // Function to perform the SpMV for a CSR matrix
 int my_sparse(const CSRMatrix *csr, const double vec[], double result[], unsigned int n) {
