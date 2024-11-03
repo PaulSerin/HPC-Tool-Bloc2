@@ -9,6 +9,5 @@ int my_dense(const unsigned int n, const double mat[], double vec[], double resu
             result[i] += mat[i * n + j] * vec[j];
         }
     }
-
     return 0; 
 }
