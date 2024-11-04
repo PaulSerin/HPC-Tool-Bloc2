@@ -1,0 +1,293 @@
+slurmstepd: info: Setting TMPDIR to /scratch/9151553. Previous errors about TMPDIR can be discarded
+cesga/2020 unloaded
+        Preparing the environment for use of the CESGA 2020 software stack.
+        Please rebuild modules cache: module --ignore-cache avail
+     
+cesga/2020 loaded
+Les modules suivants n'ont pas été elevés de votre environnement :
+  (Utilisez "module --force purge" pour tous les enlever):
+
+  1) cesga/2020
+gcccore/system loaded
+intel/2021.3.0 loaded
+===========================================
+Compiling and running with ICC optimization: O0
+CFLAGS: -O0
+===========================================
+rm -f spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o spmv
+icc -Wall -Wextra -O0 -c spmv.c -o spmv.o
+icc -Wall -Wextra -O0 -c my_sparse_COO.c -o my_sparse_COO.o
+icc -Wall -Wextra -O0 -c my_sparse_CSR.c -o my_sparse_CSR.o
+icc -Wall -Wextra -O0 -c my_sparse_CSC.c -o my_sparse_CSC.o
+icc -Wall -Wextra -O0 spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o -lopenblas -lgsl -lgslcblas -lm -o spmv
+Matrix size: 16384 x 16384 (268435456 elements)
+26837519 non-zero elements (10.00% density)
+
+==================================================
+Method 1: Dense computation with CBLAS
+--------------------------------------------------
+Execution time (CBLAS dense): 140 ms
+==================================================
+
+==================================================
+Method 2: My dense implementation
+--------------------------------------------------
+Execution time (your dense): 894 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 3: Sparse computation with GSL (CSR)
+--------------------------------------------------
+Execution time (GSL sparse): 87 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 4: My sparse implementation (CSC)
+--------------------------------------------------
+Execution time (your CSC): 141 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 5: My sparse implementation (CSR)
+--------------------------------------------------
+Execution time (your CSR): 118 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 6: My sparse implementation (COO)
+--------------------------------------------------
+Execution time (your COO): 157 ms
+Result is correct.
+==================================================
+===========================================
+Compiling and running with ICC optimization: O2-novec
+CFLAGS: -O2 -no-vec
+===========================================
+rm -f spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o spmv
+icc -Wall -Wextra -O2 -no-vec -c spmv.c -o spmv.o
+icc -Wall -Wextra -O2 -no-vec -c my_dense.c -o my_dense.o
+icc -Wall -Wextra -O2 -no-vec -c my_sparse_COO.c -o my_sparse_COO.o
+icc -Wall -Wextra -O2 -no-vec -c my_sparse_CSR.c -o my_sparse_CSR.o
+icc -Wall -Wextra -O2 -no-vec -c my_sparse_CSC.c -o my_sparse_CSC.o
+icc -Wall -Wextra -O2 -no-vec -c timer.c -o timer.o
+icc -Wall -Wextra -O2 -no-vec spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o -lopenblas -lgsl -lgslcblas -lm -o spmv
+Matrix size: 16384 x 16384 (268435456 elements)
+26837519 non-zero elements (10.00% density)
+
+==================================================
+Method 1: Dense computation with CBLAS
+--------------------------------------------------
+Execution time (CBLAS dense): 166 ms
+==================================================
+
+==================================================
+Method 2: My dense implementation
+--------------------------------------------------
+Execution time (your dense): 401 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 3: Sparse computation with GSL (CSR)
+--------------------------------------------------
+Execution time (GSL sparse): 87 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 4: My sparse implementation (CSC)
+--------------------------------------------------
+Execution time (your CSC): 35 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 5: My sparse implementation (CSR)
+--------------------------------------------------
+Execution time (your CSR): 40 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 6: My sparse implementation (COO)
+--------------------------------------------------
+Execution time (your COO): 87 ms
+Result is correct.
+==================================================
+===========================================
+Compiling and running with ICC optimization: O3-vec
+CFLAGS: -O3 -xHost
+===========================================
+rm -f spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o spmv
+icc -Wall -Wextra -O3 -xHost -c spmv.c -o spmv.o
+icc -Wall -Wextra -O3 -xHost -c my_dense.c -o my_dense.o
+icc -Wall -Wextra -O3 -xHost -c my_sparse_COO.c -o my_sparse_COO.o
+icc -Wall -Wextra -O3 -xHost -c my_sparse_CSR.c -o my_sparse_CSR.o
+icc -Wall -Wextra -O3 -xHost -c my_sparse_CSC.c -o my_sparse_CSC.o
+icc -Wall -Wextra -O3 -xHost -c timer.c -o timer.o
+icc -Wall -Wextra -O3 -xHost spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o -lopenblas -lgsl -lgslcblas -lm -o spmv
+Matrix size: 16384 x 16384 (268435456 elements)
+26837519 non-zero elements (10.00% density)
+
+==================================================
+Method 1: Dense computation with CBLAS
+--------------------------------------------------
+Execution time (CBLAS dense): 150 ms
+==================================================
+
+==================================================
+Method 2: My dense implementation
+--------------------------------------------------
+Execution time (your dense): 152 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 3: Sparse computation with GSL (CSR)
+--------------------------------------------------
+Execution time (GSL sparse): 87 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 4: My sparse implementation (CSC)
+--------------------------------------------------
+Execution time (your CSC): 35 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 5: My sparse implementation (CSR)
+--------------------------------------------------
+Execution time (your CSR): 40 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 6: My sparse implementation (COO)
+--------------------------------------------------
+Execution time (your COO): 87 ms
+Result is correct.
+==================================================
+===========================================
+Compiling and running with ICC optimization: Ofast
+CFLAGS: -Ofast
+===========================================
+rm -f spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o spmv
+icc -Wall -Wextra -Ofast -c spmv.c -o spmv.o
+icc -Wall -Wextra -Ofast -c my_dense.c -o my_dense.o
+icc -Wall -Wextra -Ofast -c my_sparse_COO.c -o my_sparse_COO.o
+icc -Wall -Wextra -Ofast -c my_sparse_CSR.c -o my_sparse_CSR.o
+icc -Wall -Wextra -Ofast -c my_sparse_CSC.c -o my_sparse_CSC.o
+icc -Wall -Wextra -Ofast -c timer.c -o timer.o
+icc -Wall -Wextra -Ofast spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o -lopenblas -lgsl -lgslcblas -lm -o spmv
+Matrix size: 16384 x 16384 (268435456 elements)
+26837519 non-zero elements (10.00% density)
+
+==================================================
+Method 1: Dense computation with CBLAS
+--------------------------------------------------
+Execution time (CBLAS dense): 152 ms
+==================================================
+
+==================================================
+Method 2: My dense implementation
+--------------------------------------------------
+Execution time (your dense): 160 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 3: Sparse computation with GSL (CSR)
+--------------------------------------------------
+Execution time (GSL sparse): 87 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 4: My sparse implementation (CSC)
+--------------------------------------------------
+Execution time (your CSC): 36 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 5: My sparse implementation (CSR)
+--------------------------------------------------
+Execution time (your CSR): 43 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 6: My sparse implementation (COO)
+--------------------------------------------------
+Execution time (your COO): 94 ms
+Result is correct.
+==================================================
+===========================================
+Compiling and running with ICC optimization: Ref
+CFLAGS: -O2
+===========================================
+rm -f spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o spmv
+icc -Wall -Wextra -O2 -c spmv.c -o spmv.o
+icc -Wall -Wextra -O2 -c my_dense.c -o my_dense.o
+icc -Wall -Wextra -O2 -c my_sparse_COO.c -o my_sparse_COO.o
+icc -Wall -Wextra -O2 -c my_sparse_CSR.c -o my_sparse_CSR.o
+icc -Wall -Wextra -O2 -c my_sparse_CSC.c -o my_sparse_CSC.o
+icc -Wall -Wextra -O2 -c timer.c -o timer.o
+icc -Wall -Wextra -O2 spmv.o my_dense.o my_sparse_COO.o my_sparse_CSR.o my_sparse_CSC.o timer.o -lopenblas -lgsl -lgslcblas -lm -o spmv
+Matrix size: 16384 x 16384 (268435456 elements)
+26837519 non-zero elements (10.00% density)
+
+==================================================
+Method 1: Dense computation with CBLAS
+--------------------------------------------------
+Execution time (CBLAS dense): 146 ms
+==================================================
+
+==================================================
+Method 2: My dense implementation
+--------------------------------------------------
+Execution time (your dense): 174 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 3: Sparse computation with GSL (CSR)
+--------------------------------------------------
+Execution time (GSL sparse): 87 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 4: My sparse implementation (CSC)
+--------------------------------------------------
+Execution time (your CSC): 37 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 5: My sparse implementation (CSR)
+--------------------------------------------------
+Execution time (your CSR): 41 ms
+Result is correct.
+==================================================
+
+==================================================
+Method 6: My sparse implementation (COO)
+--------------------------------------------------
+Execution time (your COO): 87 ms
+Result is correct.
+==================================================
+
+Benchmark Results for ICC
+=========================
+Function               O0       O2-novec         O3-vec          Ofast            Ref
+my_dense              894            401            152            160            174
+my_CSC                141             35             35             36             37
+my_CSR                118             40             40             43             41
+my_COO                157             87             87             94             87
