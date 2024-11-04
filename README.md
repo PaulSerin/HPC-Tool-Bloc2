@@ -1,15 +1,14 @@
 # SpMV: Sparse Matrix-Vector Product
 
-Use this code skeleton for the associated tasks in HPCTools.
+The branch **`dev`** of this repository is dedicated to implementing and benchmarking various methods for Sparse Matrix-Vector (SpMV) products. It is structured into multiple tasks, each focusing on different aspects of SpMV computation. Each task builds upon the previous one, progressively adding more advanced techniques and optimizations.
 
-This code is based on the use of GSL (GNU Scientific Library) for the implementation of the baseline operations used for comparison:
+The repository is organized into folders labeled by task (e.g., Task1, Task2). To run the code for a specific task, navigate to the desired task folder:
 
-- Dense matrix-vector product: `cblas_dgemv()`, you need to link against _libgslcblas_
-- Sparse matrix-vector product: `gsl_spblas_dgemv()`, you need to link against _libgsl_
+```bash
+cd Taskx
+```
 
-The dense product, `cblas_dgemv()`, can be found in other CBLAS implementations. You just need to change the library to be linked, e.g., `-lopenblas` instead of `-lgslcblas`.
-
-The base type in GSL for working with sparse matrices is `gsl_spmatrix`. GSL also provides functions to help convert your dense matrices into a sparse format.
+The main `README` file in the root directory provides all necessary instructions on compiling, running, and understanding the benchmarks across tasks. You can refer to this README for guidance on setup and usage for all tasks in the repository.
 
 ## TASK 1
 
